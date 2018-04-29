@@ -1,0 +1,38 @@
+header {
+  text-align: center;
+}
+
+
+.wrapper {
+  position: absolute;
+  left: 100px;
+  .row {
+    min-width: 800px;
+    margin-bottom: 150px;
+    .row__part {
+      float: left;
+      margin-right: 100px;
+      &__index {
+        width: 100px;
+        text-align: center;
+      }
+      &__box {
+        height: 100px;
+        width: 100px;
+        background-color: green;
+        &--amount {
+          text-align: center;
+          color: white;
+          margin: 0 auto;
+          line-height: 100px;
+          font-size: 30px;
+        }
+      }
+    }
+    .filled {
+      background-color: rgba(0,0,0,0.8);
+      // opacity: 0.2;
+    }
+  }
+
+}

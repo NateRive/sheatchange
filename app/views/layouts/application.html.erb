@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Sheatchange</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag 'application', media: 'all'%>
+    <%= javascript_include_tag 'application' %>
+  </head>
+
+  <body>
+    <header>
+      <form action="index.html" method="post">
+        <select name="number">
+          <option value="1">1名</option>
+          <option value="2">2名</option>
+          <option value="3">3名</option>
+          <option value="4">4名</option>
+        </select>
+        <input type="submit" value="入店する">
+      </form>
+      <div class="">
+        <span>待ち</span>
+        <span>0</span>組
+      </div>
+      <div class="waited-info">
+        <p>各グループ人数</p>
+        <p>先頭</p>
+      </div>
+    </header>
+    <div class="wrapper">
+      <div class="row">
+        <div class="row__part" data-id="1">
+          <div class="row__part__index">
+            1
+          </div>
+          <div class="row__part__box filled">
+            <div class="row__part__box--amount">
+              2
+            </div>
+          </div>
+        </div>
+        <div class="row__part" data-id="2">
+          <div class="row__part__index">
+            2
+          </div>
+          <div class="row__part__box  empty">
+            <div class="row__part__box--amount">
+              0
+            </div>
+          </div>
+        </div>
+        <div class="row__part" data-id="3">
+          <div class="row__part__index">
+            3
+          </div>
+          <div class="row__part__box filled">
+            <div class="row__part__box--amount">
+              6
+            </div>
+          </div>
+        </div>
+        <div class="row__part" data-id="4">
+          <div class="row__part__index">
+            4
+          </div>
+          <div class="row__part__box empty">
+            <div class="row__part__box--amount">
+              0
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="row__part" data-id="5">
+          <div class="row__part__index">
+            5
+          </div>
+          <div class="row__part__box filled">
+            <div class="row__part__box--amount">
+              8
+            </div>
+          </div>
+        </div>
+        <div class="row__part" data-id="6">
+          <div class="row__part__index">
+            6
+          </div>
+          <div class="row__part__box filled">
+            <div class="row__part__box--amount">
+              3.9
+            </div>
+          </div>
+        </div>
+        <div class="row__part" data-id="7">
+          <div class="row__part__index">
+            7
+          </div>
+          <div class="row__part__box filled">
+            <div class="row__part__box--amount">
+              5.7
+            </div>
+          </div>
+        </div>
+        <div class="row__part" data-id="8">
+          <div class="row__part__index">
+            8
+          </div>
+          <div class="row__part__box filled">
+            <div class="row__part__box--amount">
+              6.3
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
