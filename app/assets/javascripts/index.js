@@ -28,21 +28,47 @@ $(function() {
         console.log($(".empty"));
 
         $(".empty").each(function(index, element) {
-          if ($(element).parent().prev().length == 1) {
-            var prevNumber = $(element).parent().prev().find(".row__part__box--amount").text();
-            var tableId = $(element).parent().prev().data("id");
-            restTimes.push({ restTime: Number(prevNumber), emptySeat: Number(tableId) + 1 });
-          }
-          if ($(element).parent().next().length == 1) {
-            var nextNumber = $(element).parent().next().find(".row__part__box--amount").text();
-            var tableId = $(element).parent().next().data("id");
-            restTimes.push({ restTime: Number(nextNumber), emptySeat: Number(tableId) - 1 });
+          var ifPrev = $(element).parent().prev();
+          var ifNext = $(element).parent().next();
+          if (ifPrev.length == 1 && ifNext.length == 1) {
+            var prevNumber = $(ifPrev).find(".row__part__box--amount").text();
+            var nextNumber = $(ifNext).find(".row__part__box--amount").text();
+            var tableId = $(element).parent().data("id");
+            restTimes.push({ restTime: [ Number(prevNumber), Number(nextNumber) ].sort(function(a,b) {
+              if (a < b) return -1;
+              if (a > b) return 1;
+              return 0;
+            }), emptySeat: Number(tableId) });
+          } else if (ifPrev.length == 1 || $(ifNext).length == 1) {
+            if (ifPrev.length == 1) {
+              var prevNumber = $(ifPrev).find(".row__part__box--amount").text();
+              var tableId = $(element).parent().data("id");
+              restTimes.push({ restTime: [ Number(prevNumber), 10 ], emptySeat: Number(tableId) });
+            } else if (ifNext.length == 1) {
+              var nextNumber = $(ifNext).find(".row__part__box--amount").text();
+              var tableId = $(element).parent().next().data("id");
+              restTimes.push({ restTime: [ Number(nextNumber), 10 ], emptySeat: Number(tableId) });
+            }
           }
           });
+
           console.log(restTimes);
           var max = restTimes[0].emptySeat;
           for (var i = 0; i < restTimes.length - 1; i++) {
-            if (restTimes[i].restTime < restTimes[i+1].restTime) {
+            function whichIsBig(a,b) {
+              if (a[0] < b[0]) {
+                return true;
+              } else if (a[0] > b[0]) {
+                return false;
+              } else if (a[0] == b[0]) {
+                if (a[1] < b[1]) {
+                  return true;
+                } else if (a[1] >= b[1]) {
+                  return false;
+                }
+              }
+            }
+            if (whichIsBig(restTimes[i].restTime, restTimes[i+1].restTime)) {
               max = restTimes[i+1].emptySeat;
             }
           }
