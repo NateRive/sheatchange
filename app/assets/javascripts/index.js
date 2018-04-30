@@ -1,5 +1,4 @@
 $(function() {
-  console.log("a");
   $("form").submit(function(e) {
     e.preventDefault();
     var count = $("[name=number]").val();
